@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define REPORT_FILE "packages_report.txt"
 
@@ -20,6 +21,9 @@ void analizeLog(char *logFile, char *report) {
     printf("Generating Report from: [%s] log file\n", logFile);
 
     // Implement your solution here.
+
+    FILE *fp;
+    fp = fopen(file)
 
     printf("Report is generated at: [%s]\n", report);
 }
