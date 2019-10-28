@@ -8,6 +8,7 @@ package main
 
 import (
 	"io"
+	"fmt"
 	"log"
 	"net"
 	"os"
@@ -15,7 +16,25 @@ import (
 
 //!+
 func main() {
-	conn, err := net.Dial("tcp", "localhost:8000")
+	var user, port string
+	if len(os.Args)!=5 {
+		fmt.Println(len(os.Args))
+		fmt.Println("./ client --user xxxx --server xxxx")
+		os.Exit(1)
+	}
+
+	if os.Args[1] != "-user" || os.Args[3] != "-server" {
+		fmt.Println(os.Args[1] + " " + os.Args[3])
+		fmt.Println("./ client --user xxxx --server xxxx")
+
+		os.Exit(1)
+	}
+
+
+	user = os.Args[2]
+	port = os.Args[4]
+
+	conn, err := net.Dial("tcp", port)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -25,6 +44,12 @@ func main() {
 		log.Println("done")
 		done <- struct{}{} // signal the main goroutine
 	}()
+
+	_, err1 := conn.Write([]byte(user))
+	if err1 != nil {
+		log.Fatal(err)
+	}
+
 	mustCopy(conn, os.Stdin)
 	conn.Close()
 	<-done // wait for background goroutine to finish
