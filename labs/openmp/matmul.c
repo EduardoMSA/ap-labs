@@ -14,6 +14,7 @@
 **
 **  HISTORY: Written by Tim Mattson, Nov 1999.
 */
+
 #include <stdio.h>
 #include <omp.h>
 

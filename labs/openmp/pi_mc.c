@@ -21,6 +21,7 @@ Algorithm:
    some will fall inside the circle.   The probability of landing inside
    the circle or the square is proportional to their areas.
 
+
    We can use a random number generator to "throw the darts" and count
    how many "darts" fall inside the square and how many inside the
    cicle.  Dividing these two numbers gives us the ratio of their areas

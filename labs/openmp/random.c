@@ -12,22 +12,23 @@
 //  Uses a linear congruential generator to return a value between
 //  0 and 1, then scales and shifts it to fill the desired range.  This
 //  range is set when the random number generator seed is called.
-// 
+//
 // USAGE:
 //
 //      pseudo random sequence is seeded with a range
 //
 //            void seed(lower_limit, higher_limit)
-//   
+//
 //      and then subsequent calls to the random number generator generates values
 //      in the sequence:
 //
 //            double random()
 //
-// History: 
+// History:
 //      Written by Tim Mattson, 9/2007.
 
 static long MULTIPLIER  = 1366;
+
 static long ADDEND      = 150889;
 static long PMOD        = 714025;
 long random_last = 0.0;
@@ -38,7 +39,7 @@ double random()
     long random_next;
     double ret_val;
 
-// 
+//
 // compute an integer random number from zero to mod
 //
     random_next = (MULTIPLIER  * random_last + ADDEND)% PMOD;
@@ -56,7 +57,7 @@ double random()
 void seed(double low_in, double hi_in)
 {
    if(low_in < hi_in)
-   { 
+   {
       random_low = low_in;
       random_hi  = hi_in;
    }
@@ -71,4 +72,3 @@ void seed(double low_in, double hi_in)
 //**********************************************************
 // end of pseudo random generator code.
 //**********************************************************
-

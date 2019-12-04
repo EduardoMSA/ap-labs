@@ -18,6 +18,7 @@
 #define RAND_MOD   714025
 int randy = SEED;
 
+
 /* function to fill an array with random numbers */
 void fill_rand(int length, double *a)
 {
